@@ -6,8 +6,13 @@
         xmlns:local="clr-namespace:WpfApp1"
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Товар" Height="450" Width="800">
+        Title="Товар" Height="500" Width="800">
     <Grid>
+        <Menu >
+            <MenuItem Header="Настройки" Click="MenuItem_Click">
+                <MenuItem Header="Открыть файл"/>
+            </MenuItem>
+        </Menu>
         <TextBox Name="Name_Product"  HorizontalAlignment="Left" Margin="169,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="Name_Dic" HorizontalAlignment="Left" Margin="169,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="Price" HorizontalAlignment="Left" Margin="169,112,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -20,14 +25,14 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <ListView Name="ProductList" ItemsSource="{DynamicResource ResourceKey=products}" Margin="333,10,11,35">
+        <ListView Name="ProductList" ItemsSource="{DynamicResource ResourceKey=products}" Margin="333,25,11,20">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name_Product}">Наименнование</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name_Dic}">Имя</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Price_Product}">Цена</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Shelf_Life}">Срок годности</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Count_Product}">Количество</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name_Product}">Наименнование товара</GridViewColumn>
+                    <GridViewColumn Width="auto" DisplayMemberBinding="{Binding Path=Name_Dic}">Имя</GridViewColumn>
+                    <GridViewColumn Width="auto" DisplayMemberBinding="{Binding Path=Price_Product}">Цена</GridViewColumn>
+                    <GridViewColumn Width="auto" DisplayMemberBinding="{Binding Path=Shelf_Life}">Срок годности</GridViewColumn>
+                    <GridViewColumn Width="auto" DisplayMemberBinding="{Binding Path=Count_Product}">Количество</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -49,13 +54,10 @@
             <TextBlock><Run Text="Количество товара"/></TextBlock>
         </Label>
         <ComboBox HorizontalAlignment="Left" Margin="23,346,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem Name="Search_Name" Content="Поиск по имени">
+            <ComboBoxItem Name="Search_Name" Content="Поиск по имени" IsSelected="True">
                 
             </ComboBoxItem>
             <ComboBoxItem Name="Search_Price" Content="Поиск по цене">
-
-            </ComboBoxItem>
-            <ComboBoxItem Name="Search_Shelf_Life" Content="Поиск по сроку годности">
 
             </ComboBoxItem>
         </ComboBox>
