@@ -6,36 +6,58 @@
         xmlns:local="clr-namespace:WpfApp1"
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Товар" Height="450" Width="600">
+        Title="Товар" Height="450" Width="800">
     <Grid>
-        <TextBox Name="Name_Product"  HorizontalAlignment="Left" Margin="42,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="Name_Dic" HorizontalAlignment="Left" Margin="42,85,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="Price" HorizontalAlignment="Left" Margin="42,126,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="Shelf_Life_Pro" HorizontalAlignment="Left" Margin="42,166,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="Count_Product" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="42,201,0,0"/>
-        <Button Content="Добавить" HorizontalAlignment="Left" Margin="42,259,0,0" VerticalAlignment="Top" Height="43" Width="120" Click="Button_Click">
+        <TextBox Name="Name_Product"  HorizontalAlignment="Left" Margin="169,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="Name_Dic" HorizontalAlignment="Left" Margin="169,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="Price" HorizontalAlignment="Left" Margin="169,112,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <DatePicker Name="Shelf_Life_Pro" HorizontalAlignment="Left" Margin="169,152,0,0" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="Count_Product" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="169,187,0,0"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="169,229,0,0" VerticalAlignment="Top" Height="43" Width="120" Click="Button_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Content="Просмотреть" HorizontalAlignment="Left" Margin="42,323,0,0" VerticalAlignment="Top" Height="43" Width="120" Click="Button_Click_1">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="10"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <ListBox Name="Lable_text"  HorizontalAlignment="Left" Margin="240,47,0,0" VerticalAlignment="Top" Height="128" Width="325"/>
-        <Label Content="Поиск по имени" HorizontalAlignment="Left" Margin="240,197,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="Name_search" HorizontalAlignment="Left" Margin="371,201,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Поиск" HorizontalAlignment="Left" Margin="371,237,0,0" VerticalAlignment="Top" Width="60" Click="Button_Click_2"/>
-        <Label Content="Поиск по цене" HorizontalAlignment="Left" Margin="240,269,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="Name_price_s" HorizontalAlignment="Left" Margin="371,273,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Поиск" HorizontalAlignment="Left" Margin="371,308,0,0" VerticalAlignment="Top" Width="60" Click="Button_Click_3"/>
-        <Label Content="Срок годности" HorizontalAlignment="Left" Margin="240,340,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Name_shelf_life" HorizontalAlignment="Left" Margin="371,344,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Поиск" HorizontalAlignment="Left" Margin="371,379,0,0" VerticalAlignment="Top" Width="60" Click="Button_Click_4"/>
+        <ListView Name="ProductList" ItemsSource="{DynamicResource ResourceKey=products}" Margin="333,10,11,35">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name_Product}">Наименнование</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name_Dic}">Имя</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Price_Product}">Цена</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Shelf_Life}">Срок годности</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Count_Product}">Количество</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox Name="Name_search" HorizontalAlignment="Left" Margin="169,348,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Поиск" HorizontalAlignment="Left" Margin="169,384,0,0" VerticalAlignment="Top" Width="60" Click="Button_Click_2"/>
+        <Label HorizontalAlignment="Left" Margin="38,22,0,0" VerticalAlignment="Top">
+            <TextBlock>Наименование<LineBreak/>Товара</TextBlock>
+        </Label>
+        <Label HorizontalAlignment="Left" Margin="38,68,0,0" VerticalAlignment="Top">
+            <TextBlock><Run Text="Производитель"/></TextBlock>
+        </Label>
+        <Label HorizontalAlignment="Left" Margin="38,108,0,0" VerticalAlignment="Top">
+            <TextBlock><Run Text="Цена товара"/></TextBlock>
+        </Label>
+        <Label HorizontalAlignment="Left" Margin="38,148,0,0" VerticalAlignment="Top">
+            <TextBlock><Run Text="Срок годность"/></TextBlock>
+        </Label>
+        <Label HorizontalAlignment="Left" Margin="38,183,0,0" VerticalAlignment="Top">
+            <TextBlock><Run Text="Количество товара"/></TextBlock>
+        </Label>
+        <ComboBox HorizontalAlignment="Left" Margin="23,346,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Name="Search_Name" Content="Поиск по имени">
+                
+            </ComboBoxItem>
+            <ComboBoxItem Name="Search_Price" Content="Поиск по цене">
+
+            </ComboBoxItem>
+            <ComboBoxItem Name="Search_Shelf_Life" Content="Поиск по сроку годности">
+
+            </ComboBoxItem>
+        </ComboBox>
     </Grid>
 </Window>

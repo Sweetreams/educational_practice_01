@@ -24,7 +24,8 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         public List<Product> strings = new List<Product>();
-        List<String> products = new List<String>();
+        public List<String> products = new List<String>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,81 +35,88 @@ namespace WpfApp1
         {
             try
             {
-                Product product = new Product(Name_Product.Text, Name_Dic.Text, Convert.ToInt32(Price.Text), Shelf_Life_Pro.Text, Convert.ToInt32(Count_Product.Text));
-                products.Add($"{product.Name_Product}, {product.Name_Dic}, {product.Price_Product}, {product.Shelf_Life}, {product.Count_Product}");
-                strings.Add(product);
+                Product product = new Product(Name_Product.Text, Name_Dic.Text, Convert.ToInt32(Price.Text), Convert.ToDateTime(Shelf_Life_Pro.Text), Convert.ToInt32(Count_Product.Text));
+                this.ProductList.Items.Add(product);
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Неверный формат ввода");
+                MessageBox.Show($"{ex}");
             }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Lable_text.Items.Clear();
-            foreach(string s in products)
-            {
-                Lable_text.Items.Add(s);
-            }
+            
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Lable_text.Items.Clear();
-            try
+            this.ProductList.Items.Clear();
+            if (Search_Name.IsSelected == true)
             {
-                foreach(Product product in strings)
+                foreach (Product product in strings)
                 {
-                    if(product.Name_Product == Name_search.Text)
+                    if (product.Name_Product == Name_search.Text)
                     {
-                        Lable_text.Items.Add(product.ToString());
+                        this.ProductList.Items.Add(product);
                     }
                 }
             }
-            catch
-            {
-                MessageBox.Show("Я ФУТБОЛЬНЫЙ МЯЧИК");
-            }
+
+            //Lable_text.Items.Clear();
+            //try
+            //{
+            //    foreach(Product product in strings)
+            //    {
+            //        if(product.Name_Product == Name_search.Text)
+            //        {
+            //            Lable_text.Items.Add(product.ToString());
+            //        }
+            //    }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Я ФУТБОЛЬНЫЙ МЯЧИК");
+            //}
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Lable_text.Items.Clear();
-            try
-            {
-                foreach (Product product in strings)
-                {
-                    if (product.Price_Product < Convert.ToInt32(Name_price_s.Text))
-                    {
-                        Lable_text.Items.Add(product.ToString());
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Я ФУТБОЛЬНЫЙ МЯЧИК");
-            }
+            //Lable_text.Items.Clear();
+            //try
+            //{
+            //    foreach (Product product in strings)
+            //    {
+            //        if (product.Price_Product < Convert.ToInt32(Name_price_s.Text))
+            //        {
+            //            Lable_text.Items.Add(product.ToString());
+            //        }
+            //    }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Я ФУТБОЛЬНЫЙ МЯЧИК");
+            //}
 
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            Lable_text.Items.Clear();
-            try
-            {
-                foreach (Product product in strings)
-                {
-                    if (Convert.ToInt32(product.Shelf_Life) > Convert.ToInt32(Name_shelf_life.Text))
-                    {
-                        Lable_text.Items.Add(product.ToString());
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Я ФУТБОЛЬНЫЙ МЯЧИК");
-            }
+            //Lable_text.Items.Clear();
+            //try
+            //{
+            //    foreach (Product product in strings)
+            //    {
+            //        if (Convert.ToInt32(product.Shelf_Life) > Convert.ToInt32(Name_shelf_life.Text))
+            //        {
+            //            Lable_text.Items.Add(product.ToString());
+            //        }
+            //    }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Я ФУТБОЛЬНЫЙ МЯЧИК");
+            //}
         }
     }
 }
